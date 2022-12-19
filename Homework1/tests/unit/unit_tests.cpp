@@ -48,7 +48,7 @@ TEST(CUSTOM_DEQUE,check_begin_end)
     custom_deque<int> dq({ 1, 2, 3, 4, 5 });
     custom_deque<int> dq2;
     for (int it : dq)
-    dq2.push_back(it);
+        dq2.push_back(it);
     EXPECT_EQ(dq.size(),dq2.size());
 
 }
@@ -91,10 +91,50 @@ TEST(CUSTOM_DEQUE,check_swap)
 
 }
 
+TEST(CUSTOM_DEQUE,check_push_pop)
+{
+    custom_deque<int> dq({ 1, 2, 3, 4, 5 });
+    custom_deque<int> dq2=dq;
+    dq.pop_back();
+    dq.pop_front();
+    dq.push_front(1);
+    dq.push_back(5);
+    bool check= dq==dq2;
+    EXPECT_EQ(check,true);
 
+}
+TEST(CUSTOM_DEQUE,check_emplace)
+{
+    custom_deque<int> dq({ 1, 2, 3, 4, 5 });
+    dq.emplace_front(0);
+    dq.emplace_back(6);
+    dq.emplace(dq.end(),7);
+    custom_deque<int> dq2({ 0,1, 2, 3, 4, 5 ,6,7});
+    bool check= dq==dq2;
+    EXPECT_EQ(check,true);
 
+}
 
+TEST(CUSTOM_DEQUE,check_insert)
+{
+    custom_deque<int> dq({ 1, 2, 3, 4, 5 });
+    auto iter1 = dq.cbegin(); // итератор указывает на второй элемент
+    dq.insert(iter1 , 8);
+    auto iter4 = dq.cend();
+    dq.insert(iter4, { 21, 22, 23 });
+    dq.insert(dq.begin(),2,1);
+    custom_deque<int> dq2{1 ,1 ,8 ,1 ,2 ,3 ,4 ,5 ,21 ,22 ,23 };
+    bool check= dq==dq2;
+    EXPECT_EQ(check,true);
 
+}
+TEST(CUSTOM_DEQUE,check_front_back)
+{
+    custom_deque<int> dq({ 1, 2, 3, 4, 5 });
+    EXPECT_EQ(dq.front(),1);
+    EXPECT_EQ(dq.back(),5);
+
+}
 TEST(CUSTOM_DEQUE,check_at)
 {
     custom_deque<int> dq({ 1, 2, 3, 4, 5 });
@@ -108,31 +148,16 @@ TEST(CUSTOM_DEQUE,check_at)
 
 }
 
-<<<<<<< HEAD
-
-=======
-TEST(CUSTOM_DEQUE, check_back)
+TEST(CUSTOM_DEQUE,check_erase)
 {
-    custom_deque<int> dq({ 1, 2, 3, 4, 5 });
-    ASSERT_EQ(dq.back(), 5);
-    dq.pop_back();
-    ASSERT_EQ(dq.back(), 4);
+    custom_deque<int>  mydeque{1, 2, 3, 4, 5, 6, 7, 8};
+    auto iter=mydeque.begin();
+    custom_deque<int>dq{2, 3, 4, 5, 6, 7, 8};
+    bool check=mydeque==dq;
+    EXPECT_EQ(check,false);
 }
-
-TEST(CUSTOM_DEQUE, check_op_equal)
-{
-    custom_deque<int> dq({ 1, 2, 3, 4, 5 });
-    custom_deque<int> dq_2({1, 2, 3, 4, 5});
-    custom_deque<int> dq_3({1, 2, 3, 4, 6});
-    custom_deque<int> dq_4({1, 2, 3, 4, 5, 6});
-    ASSERT_TRUE(dq == dq_2);
-    ASSERT_FALSE(dq_2 == dq_3);
-    ASSERT_FALSE(dq_2 == dq_4);
-}
->>>>>>> origin/fix
 
 int main(int argc, char **argv) {
 
     return RUN_ALL_TESTS();
 }
-

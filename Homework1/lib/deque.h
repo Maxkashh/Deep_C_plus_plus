@@ -54,23 +54,23 @@ namespace custom_std
         }
         custom_iterator<T> begin() const noexcept
         {
-            auto iter= deque.begin();
+            auto iter=deque.begin();
             return reinterpret_cast<__gnu_cxx::__normal_iterator<T *, vector<T>> &&>(iter);
         }
         const custom_iterator<T> cbegin() const noexcept
         {
-            auto iter= deque.cbegin();
+            auto iter=deque.cbegin();
             return reinterpret_cast<__gnu_cxx::__normal_iterator<T *, vector<T>> &&>(iter);
 
         }
         custom_iterator<T> end() const noexcept
         {
-            auto iter= deque.end();
+            auto iter=deque.end();
             return reinterpret_cast<__gnu_cxx::__normal_iterator<T *, vector<T>> &&>(iter);
         }
         const custom_iterator<T> cend() const noexcept
         {
-            auto iter= deque.cend();
+            auto iter=deque.cend();
             return reinterpret_cast<__gnu_cxx::__normal_iterator<T *, vector<T>> &&>(iter);
         }
         void assign(std::initializer_list<T> list)
@@ -109,11 +109,11 @@ namespace custom_std
         }
         void emplace_front(T temp)
         {
-            deque.insert(deque.begin(), temp);
+            deque.emplace(deque.begin(), temp);
         }
         void emplace_back(T temp)
         {
-            deque.push_back(temp);
+            deque.emplace_back(temp);
         }
         void emplace(custom_iterator<T> pos,T temp)
         {
@@ -181,6 +181,7 @@ namespace custom_std
             {
                 std::cout << "Incorrect index" << std::endl;
             }
+            return -1;//взял в качестве кода возврата
 
         }
         template <class V>
@@ -213,7 +214,7 @@ namespace custom_std
             T res=0;
             try
             {
-                res= deque.at(index);
+                res=deque.at(index);
 
             }
             catch (std::out_of_range &e)
@@ -227,7 +228,7 @@ namespace custom_std
             T res=0;
             try
             {
-                res= deque.at(index);
+                res=deque.at(index);
             }
             catch (std::out_of_range &e)
             {
