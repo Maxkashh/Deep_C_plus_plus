@@ -108,7 +108,28 @@ TEST(CUSTOM_DEQUE,check_at)
 
 }
 
+<<<<<<< HEAD
 
+=======
+TEST(CUSTOM_DEQUE, check_back)
+{
+    custom_deque<int> dq({ 1, 2, 3, 4, 5 });
+    ASSERT_EQ(dq.back(), 5);
+    dq.pop_back();
+    ASSERT_EQ(dq.back(), 4);
+}
+
+TEST(CUSTOM_DEQUE, check_op_equal)
+{
+    custom_deque<int> dq({ 1, 2, 3, 4, 5 });
+    custom_deque<int> dq_2({1, 2, 3, 4, 5});
+    custom_deque<int> dq_3({1, 2, 3, 4, 6});
+    custom_deque<int> dq_4({1, 2, 3, 4, 5, 6});
+    ASSERT_TRUE(dq == dq_2);
+    ASSERT_FALSE(dq_2 == dq_3);
+    ASSERT_FALSE(dq_2 == dq_4);
+}
+>>>>>>> origin/fix
 
 int main(int argc, char **argv) {
 

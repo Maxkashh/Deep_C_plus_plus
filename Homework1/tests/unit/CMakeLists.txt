@@ -8,4 +8,6 @@ target_link_libraries(${PROJECT_NAME} PUBLIC
 
         gtest
         gtest_main
+        pthread
+
          )

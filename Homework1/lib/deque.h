@@ -163,7 +163,9 @@ namespace custom_std
         {
             if(!deque.empty())
             {
-                T elem=deque[deque.size()];
+
+                T elem=deque[deque.size() - 1];
+
                 return elem;
             }
 
@@ -192,10 +194,12 @@ namespace custom_std
 
         bool operator==(const custom_deque<T> &dq2)
         {
+            if (deque.size() != dq2.size())
+                return false;
             for(int i=0;i<deque.size();i++)
 
             {
-                if(deque[i]==dq2.deque[i])
+                if(deque[i] != dq2.deque[i])
                     return false;
             }
             return true;
